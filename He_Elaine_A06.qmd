@@ -167,27 +167,17 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
-
+#define rounding function
 round_fun <- function(x){
   round(x, 2)
 }
+
+#sapply to a create a vector
 round_points <- sapply(points_per_game, round_fun)
 
 print(round_points)
 ```
 
-```{r}
-#initialize empty vector
-rpoints <- c()
-
-#iterate through points per game list
-for (i in points_per_game){
-  #round each element and concatenate to empty vector
-  rpoints <- c(rpoints, round(i, 2))
-}
-
-print(rpoints)
-```
 
 
 ## Question 3 (3 points)
@@ -243,20 +233,15 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 ### Part a (2 points)
 
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
-
-```{r}
-#print(names(max_temps))
-for (val in 3:ncol(max_temps)) {
-  print(max_temps[val)
-}
-```
-
-
 ```{r}
 max_temps
-for (i in names(max_temps))
 ```
 
+
+```{r}
+#use colMeans function to find means of month columns
+colMeans(max_temps[3:14])
+```
 
 ### Part b (2 points)
 
@@ -267,10 +252,12 @@ Create three new data frames by slicing the data by state.
 - Slice the data frame to only include the state of Virginia (VA).
 
 No need to print any output here.
-
 ```{r}
-
+co_temp <- filter(max_temps, max_temps$state == "CO")
+oh_temp <- filter(max_temps, max_temps$state == "OH")
+va_temp <- filter(max_temps, max_temps$state == "VA")
 ```
+
 
 
 ### Part c (5 points)
@@ -290,6 +277,11 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
+#create vector of yearly median temps
+co_annual <- apply(co_temp[,3:13], 1, median)
+
+#print statement
+sprintf("The maximum median annual temperature of %f occurred in %d and the minimum median annual temperature of %f occurred in %d.", max(co_annual), co_temp$year[which.max(co_annual)], min(co_annual), co_temp$year[which.min(co_annual)])
 
 ```
 
@@ -302,16 +294,13 @@ Example: The number 312 would return 6 (3 + 1 + 2)
 
 Run your function with 935068.
 
-nchar(e)
+312 // 100 --> 3
+310 - 3(100) = 12
+12 // 10 --> 
 
 ```{r}
-sum_of_digits <- function(num){
-  if (num = ){
-    return()
-  } else {
-    digits <`1- (len(str(num))
-    return (num + sum_of_digits ())
-  }
+function (num){
+  num <- num // 10 ** (nchar(num) - 1)
 }
 ```
 
