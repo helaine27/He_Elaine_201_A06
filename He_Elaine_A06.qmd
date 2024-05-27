@@ -102,7 +102,11 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 - using names
 
 ```{r}
+#using indexing
+player_info[[2]][[4]]
 
+#using names
+player_info$LJ$points
 ```
 
 
@@ -112,8 +116,17 @@ Add a new named element to the end of each player's list called `height`. The he
 
 Print the `player_info` list to prove you were successful.
 
-```{r}
 
+```{r}
+#create a vector with player heights
+heights <- c(MJ = 78, LJ = 81, KB = 78, KA = 86, SO = 85)
+
+#iterate through player names and add corresponding height by using the name
+for (player in names(player_info)){
+  player_info[[player]][["height"]] <- heights[[i]]
+}
+
+print(player_info)
 ```
 
 
@@ -132,7 +145,18 @@ Hint: initialize an empty list
 Note: this must still run correctly even if the values were to change or if another player were added to the list or if the player order changed.
 
 ```{r}
+#intiialize empty list
+points_per_game <- list()
 
+#iterate through each player
+for (people in names(player_info)){
+  #use indexing to divide points by games played
+  points_per = player_info[[people]][["points"]] / player_info[[people]][["games_played"]]
+  #concadinate to new list
+  points_per_game[[people]] <- c(points_per)
+}
+
+print(points_per_game)
 ```
 
 
@@ -142,8 +166,18 @@ Use the list created in Part c and an appropriate apply function to round each v
 
 Store the output as a vector and print the results.
 
-```{r}
 
+```{r}
+#initialize empty vector
+rpoints <- c()
+
+#iterate through points per game list
+for (i in points_per_game){
+  #round each element and concatenate to empty vector
+  rpoints <- c(rpoints, round(i, 2))
+}
+
+print(rpoints)
 ```
 
 
@@ -237,6 +271,24 @@ Example: The number 312 would return 6 (3 + 1 + 2)
 Run your function with 935068.
 
 ```{r}
+num <- 12345
 
+string <- str(num)
+for (i in string){
+  print(i + 1)
+}
+
+```
+
+
+```{r}
+sum_of_digits <- function(num){
+  if (num = ){
+    return()
+  } else {
+    digits <- (len(str(num))
+    return (num + sum_of_digits ())
+  }
+}
 ```
 
