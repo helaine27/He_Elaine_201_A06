@@ -151,7 +151,7 @@ points_per_game <- list()
 #iterate through each player
 for (people in names(player_info)){
   #use indexing to divide points by games played
-  points_per = player_info[[people]][["points"]] / player_info[[people]][["games_played"]]
+  points_per <- player_info[[people]][["points"]] / player_info[[people]][["games_played"]]
   #concadinate to new list
   points_per_game[[people]] <- c(points_per)
 }
@@ -233,9 +233,6 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 ### Part a (2 points)
 
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
-```{r}
-max_temps
-```
 
 
 ```{r}
@@ -278,10 +275,10 @@ Note: This code should still run successfully even if the numbers were to change
 
 ```{r}
 #create vector of yearly median temps
-co_annual <- apply(co_temp[,3:13], 1, median)
-max(co_annual)
-#print statement
-sprintf("The maximum median annual temperature of %f occurred in %d and the minimum median annual temperature of %f occurred in %d.", max(co_annual), co_temp$year[which.max(co_annual)], min(co_annual), co_temp$year[which.min(co_annual)])
+co_annual <- apply(co_temp[,3:14], 1, median)
+
+#print statement & set precision of %f to 2 decimal points
+sprintf("The maximum median annual temperature of %.2f occurred in %d and the minimum median annual temperature of %.2f occurred in %d.", max(co_annual), co_temp$year[which.max(co_annual)], min(co_annual), co_temp$year[which.min(co_annual)])
 
 ```
 
