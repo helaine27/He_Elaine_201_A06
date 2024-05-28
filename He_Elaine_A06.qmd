@@ -279,7 +279,7 @@ Note: This code should still run successfully even if the numbers were to change
 ```{r}
 #create vector of yearly median temps
 co_annual <- apply(co_temp[,3:13], 1, median)
-
+max(co_annual)
 #print statement
 sprintf("The maximum median annual temperature of %f occurred in %d and the minimum median annual temperature of %f occurred in %d.", max(co_annual), co_temp$year[which.max(co_annual)], min(co_annual), co_temp$year[which.min(co_annual)])
 
@@ -299,8 +299,22 @@ Run your function with 935068.
 12 // 10 --> 
 
 ```{r}
-function (num){
-  num <- num // 10 ** (nchar(num) - 1)
+#define function
+sum_digits <- function (num){
+  #define base case
+  if (num == 0){
+    return (0)
+  } else {
+    #draw each digit from number
+    digit <- num %/% (10 ** (nchar(num) - 1)) # num = 3
+    #take away digit from number
+    num <- (num - (digit * (10 ** (nchar(num) - 1))))
+    #add digits
+    return (digit + sum_digits(num))
+  }
 }
+#call function
+sum_of_digits <- sum_digits (935068)
+print(sum_of_digits)
 ```
 
